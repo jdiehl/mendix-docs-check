@@ -21,24 +21,47 @@ function findDoc(index, url) {
 }
 
 exports.convert = async function convert(DOCS, docs, data) {
+  let weight = 0
   const index = makeUrlIndex(docs)
   for ({ Source, Page, Parent, Title } of data) {
+    weight += 10
     const to =  './output/' + Page + '.md'
+    let descriptions = [], tags = new Set()
 
     // create directory
     const dir = dirname(to)
     await mkdirp(dir)
 
     // collect source files
-    let content = []
+    let body = []
     for (url of Source.split('\n')) {
       if (!url) continue
       const doc = findDoc(index, url)
-      content.push(doc.body)
+      body.push('')
+      body.push(`>>>>> ${doc.file.substring(7)}`)
+      body.push(doc.body)
+
+      // update description & tags
+      if (doc.header.description) descriptions.push(doc.header.description)
+      if (doc.header.tags) doc.header.tags.forEach(tag => tags.add(tag))
     }
 
+    const head = [
+      `title: ${Title}`,
+      `url: /refguide/mobile/${Page}`,
+      Parent ? `parent: /refguide/${Parent}` : `category: Mobile`,
+      `weight: ${weight}`
+    ].concat(descriptions.map(d => `description: ${d}`))
+    if (tags.length > 0) head.push(JSON.stringify([...tags]))
+
+    const contents = [
+      '---',
+      ...head,
+      '---',
+      ...body
+    ]
+
     // write file
-    await writeFile(to, content.join('\n\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MERGED <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n\n'))
+    await writeFile(to, contents.join('\n'))
   }
 }
-

@@ -3,18 +3,23 @@ const glob = require("glob")
 
 async function loadDoc(file) {
   const buf = await readFile(file)
-  const body = buf.toString()
-  const content = body.split('\n')
+  const content = buf.toString().split('\n')
   if (content.shift().trim() !== '---') throw new Error(`Invalid doc: ${file}`)
   
   const header = {}
 
   while (content.length > 0 && content[0].trim() !== '---') {
-    [key, value] = content.shift().trim().split(/ *: */)
+    const line = content.shift()
+    const i = line.indexOf(':')
+    const key = line.substring(0, i).trim()
+    let value = line.substring(i + 1).trim()
+    if (value && (value[0] === '"' || value[0] === '[')) value = JSON.parse(value)
     if (key) header[key] = value
   }
-
+  content.shift()
   if (content.length === 0) throw new Error(`Invalid doc: ${file}`)
+
+  const body = content.join('\n')
 
   return { file, header, body }
 }
