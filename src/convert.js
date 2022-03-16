@@ -21,10 +21,10 @@ function findDoc(index, url) {
 }
 
 exports.convert = async function convert(DOCS, docs, data) {
-  let weight = 0
+  let weights = {}
   const index = makeUrlIndex(docs)
   for ({ Source, Page, Parent, Title } of data) {
-    weight += 10
+    weights[Parent] ? weights[Parent] += 10 : weights[Parent] = 10
     const to =  './output/' + Page + '.md'
     let descriptions = [], tags = new Set()
 
@@ -38,7 +38,7 @@ exports.convert = async function convert(DOCS, docs, data) {
       if (!url) continue
       const doc = findDoc(index, url)
       body.push('')
-      body.push(`>>>>> ${doc.file.substring(7)}`)
+      body.push(`>>>>> ${doc.file.substring(23)}`)
       body.push(doc.body)
 
       // update description & tags
@@ -48,9 +48,9 @@ exports.convert = async function convert(DOCS, docs, data) {
 
     const head = [
       `title: ${Title}`,
-      `url: /refguide/mobile/${Page}`,
-      Parent ? `parent: /refguide/${Parent}` : `category: Mobile`,
-      `weight: ${weight}`
+      `url: /refguide/mobile/${Page.replace('/_index', '')}/`,
+      Parent !== 'mobile' ? `parent: /refguide/${Parent}/` : `category: Mobile`,
+      `weight: ${weights[Parent]}`
     ].concat(descriptions.map(d => `description: ${d}`))
     if (tags.length > 0) head.push(JSON.stringify([...tags]))
 
