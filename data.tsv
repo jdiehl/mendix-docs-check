@@ -1,0 +1,68 @@
+Source	Page	Parent	Title
+"https://docs.mendix.com/refguide/mobile
+https://docs.mendix.com/howto/mobile"	_index		Mobile
+"https://docs.mendix.com/howto/mobile/get-started
+https://docs.mendix.com/howto/mobile/getting-started-with-native-mobile"	getting-started-with-mobile/_index	mobile	Getting Started with Mobile
+"https://docs.mendix.com/refguide/getting-the-make-it-native-app
+https://docs.mendix.com/howto/mobile/common-issues"	getting-started-with-mobile/getting-the-make-it-native-app	mobile/getting-started-with-mobile	Getting the Make It Native App
+	introduction-to-mobile-technologies/_index	mobile	Introduction to Mobile Technologies
+"https://docs.mendix.com/refguide/native-mobile
+https://docs.mendix.com/howto/mobile/native-mobile"	introduction-to-mobile-technologies/native-mobile	mobile/introduction-to-mobile-technologies	Native Mobile
+https://docs.mendix.com/refguide/progressive-web-app	introduction-to-mobile-technologies/progressive-web-app	mobile/introduction-to-mobile-technologies	Progressive Web App
+"https://docs.mendix.com/refguide/hybrid-mobile
+https://docs.mendix.com/howto/mobile/hybrid-mobile
+https://docs.mendix.com/howto/mobile/build-hybrid-apps
+https://docs.mendix.com/howto/mobile/setting-up-hybrid-push-notifications
+https://docs.mendix.com/howto/mobile/push-notifications"	introduction-to-mobile-technologies/hybrid-mobile	mobile/introduction-to-mobile-technologies	Hybrid Mobile(deprecated)
+	designing-mobile-user-interfaces/_index	mobile	Designing Mobile User Interfaces
+https://docs.mendix.com/howto/mobile/ui-best-practices	designing-mobile-user-interfaces/design-principles	mobile/designing-mobile-user-interfaces	Design Principles
+https://docs.mendix.com/refguide/native-navigation	designing-mobile-user-interfaces/navigation	mobile/designing-mobile-user-interfaces	Navigation
+"https://docs.mendix.com/refguide/native-svg
+https://docs.mendix.com/howto/mobile/native-custom-fonts"	designing-mobile-user-interfaces/images-icons-and-fonts	mobile/designing-mobile-user-interfaces	Images, Icons and Fonts
+"https://docs.mendix.com/refguide/native-styling-refguide
+https://docs.mendix.com/howto/mobile/native-styling
+https://docs.mendix.com/howto/mobile/how-to-use-native-styling"	designing-mobile-user-interfaces/native-styling	mobile/designing-mobile-user-interfaces	Native Styling
+	designing-mobile-user-interfaces/native-widgets-and-modules	mobile/designing-mobile-user-interfaces	Native Widgets and Modules
+	designing-mobile-user-interfaces/native-animations	mobile/designing-mobile-user-interfaces	Native Animations
+	designing-mobile-user-interfaces/debugging-styling	mobile/designing-mobile-user-interfaces	Debugging Styling
+https://docs.mendix.com/howto/mobile/implementation	using-mobile-capabilities/_index	mobile	Using Mobile Capabilities
+https://docs.mendix.com/refguide/offline-first	using-mobile-capabilities/offlinefirst-data	mobile/using-mobile-capabilities	OfflineFirst Data
+	using-mobile-capabilities/authentication	mobile/using-mobile-capabilities	Authentication
+https://docs.mendix.com/howto/mobile/native-deep-link	using-mobile-capabilities/deep-links	mobile/using-mobile-capabilities	Deep Links
+	using-mobile-capabilities/camera-&-images	mobile/using-mobile-capabilities	Camera & Images
+https://docs.mendix.com/howto/mobile/how-to-maps	using-mobile-capabilities/location-&-maps	mobile/using-mobile-capabilities	Location & Maps
+"https://docs.mendix.com/howto/mobile/local-notif-parent
+https://docs.mendix.com/howto/mobile/native-local-notifications
+https://docs.mendix.com/howto/mobile/local-notif-badges
+https://docs.mendix.com/howto/mobile/local-notif-action
+https://docs.mendix.com/howto/mobile/local-notif-data
+https://docs.mendix.com/howto/mobile/local-notif-schedule-cancel"	using-mobile-capabilities/local-notifications	mobile/using-mobile-capabilities	Local Notifications
+"https://docs.mendix.com/howto/mobile/notifications
+https://docs.mendix.com/howto/mobile/notif-add-module-depends
+https://docs.mendix.com/howto/mobile/notif-implement-module
+https://docs.mendix.com/howto/mobile/setting-up-google-firebase-cloud-messaging-server
+https://docs.mendix.com/howto/mobile/notif-config-push
+https://docs.mendix.com/howto/mobile/notif-implement-native
+https://docs.mendix.com/howto/mobile/notif-build-native
+https://docs.mendix.com/howto/mobile/notif-send-test
+https://docs.mendix.com/howto/mobile/notif-mult-devices"	using-mobile-capabilities/push-notifications	mobile/using-mobile-capabilities	Push Notifications
+"https://docs.mendix.com/refguide/ar-widgets
+https://docs.mendix.com/howto/mobile/ar-parent
+https://docs.mendix.com/howto/mobile/how-to-ar-business-card
+https://docs.mendix.com/howto/mobile/how-to-ar-simple-cube"	using-mobile-capabilities/augmented-reality	mobile/using-mobile-capabilities	Augmented Reality
+	using-mobile-capabilities/debugging-native-apps	mobile/using-mobile-capabilities	Debugging Native Apps
+https://docs.mendix.com/howto/mobile/distribution	distributing-mobile-apps/_index	mobile	Distributing Mobile Apps
+	distributing-mobile-apps/distributing-progressive-web-apps	mobile/distributing-mobile-apps	Distributing Progressive Web Apps
+"https://docs.mendix.com/refguide/native-template
+https://docs.mendix.com/howto/mobile/build-native-apps
+https://docs.mendix.com/howto/mobile/deploying-native-app
+https://docs.mendix.com/howto/mobile/native-build-locally-manually
+https://docs.mendix.com/howto/mobile/native-build-locally
+https://docs.mendix.com/howto/mobile/native-debug
+https://docs.mendix.com/howto/mobile/how-to-devapps"	distributing-mobile-apps/building-native-apps	mobile/distributing-mobile-apps	Building Native Apps
+https://docs.mendix.com/refguide/managing-app-signing-keys	distributing-mobile-apps/distributing-native-apps	mobile/distributing-mobile-apps	Distributing Native Apps
+"https://docs.mendix.com/howto/mobile/how-to-ota
+https://docs.mendix.com/howto/mobile/how-to-ota-appcenter"	distributing-mobile-apps/overtheair-updates	mobile/distributing-mobile-apps	OvertheAir Updates
+	distributing-mobile-apps/mobile-logging	mobile/distributing-mobile-apps	Mobile Logging
+https://docs.mendix.com/howto/mobile/testing-mendix-native-apps-using-appium	distributing-mobile-apps/testing-mobile-apps	mobile/distributing-mobile-apps	Testing Mobile Apps
+	best-practices-for-mobile/_index	mobile	Best Practices for Mobile
