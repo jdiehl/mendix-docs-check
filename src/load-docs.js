@@ -1,4 +1,5 @@
-const { readFile } = require('fs').promises
+const { readFile, writeFile } = require('fs').promises
+const { fstat } = require('fs')
 const glob = require("glob")
 
 async function loadDoc(file) {
@@ -45,10 +46,18 @@ async function loadDir(dir) {
 }
 
 exports.loadDocs = async function loadDocs(dirs) {
+  try {
+    const buf = await readFile('./docs.json')
+    return JSON.parse(buf)
+  } catch {}
+
   let docs = []
   for (const dir of dirs) {
     const moreDocs = await loadDir(dir)
     docs = docs.concat(moreDocs)
   }
+
+  await writeFile('./docs.json', JSON.stringify(docs, false, '  '))
+  
   return docs
 }

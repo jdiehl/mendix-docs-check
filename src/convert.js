@@ -27,8 +27,10 @@ function findDoc(index, url) {
 }
 
 exports.convert = async function convert(DOCS, docs, data) {
-  let weights = {}
+  const weights = {}
   const index = makeUrlIndex(docs)
+  const redirects = ['From\tTo']
+
   for ({ Source, Page, Parent, Title } of data) {
     weights[Parent] ? weights[Parent] += 10 : weights[Parent] = 10
     const to =  OUTPUT + Page + '.md'
@@ -52,7 +54,10 @@ exports.convert = async function convert(DOCS, docs, data) {
       // update description & tags
       if (doc.header.description) descriptions.push(doc.header.description)
       if (doc.header.tags) doc.header.tags.forEach(tag => tags.add(tag))
-      if (doc.header.url !== url) aliases.push(doc.header.url)
+      if (doc.header.url !== url) {
+        aliases.push(doc.header.url)
+        redirects.push(doc.header.url + '\t' + url)
+      }
     }
     
     const head = [`title: ${Title}`, `url: ${url}`]
@@ -90,4 +95,7 @@ exports.convert = async function convert(DOCS, docs, data) {
 
   // create MAPPING
   await writeFile(OUTPUT + '_MAPPING.TXT', 'There are document files in this folder that are mapped to the product. Refer to Mapping to Products for the names of these files and how to proceed.')
+
+  // create redirects.tsv
+  await writeFile('./redirects.tsv', redirects.join('\n'))
 }
