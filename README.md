@@ -9,7 +9,7 @@ node .
 ```
 rm docs.json
 node .
-rm -rf ../docs/content/howto/mobile
-rm -rf ../docs/content/refguide/mobile
-cp -R mobile ../docs/content/
+rm -rf ../docs/content/en/docs/howto/mobile
+rm -rf ../docs/content/en/docs/refguide/mobile
+cp -R mobile ../docs/content/en/docs/refguide/
 ```
