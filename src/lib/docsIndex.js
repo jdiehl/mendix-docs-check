@@ -17,12 +17,13 @@ async function loadDoc(file) {
   try {
     res.header = yaml.parse(content.shift())
   } catch (err) {
+    logger.error(`Invalid Doc Header: ${file} ${err.message}`)
     res.header = {}
     res.error = err
   }
 
   // extract body
-  res.body = content.join('')
+  res.content = content.join('')
 
   return res
 }
@@ -31,18 +32,42 @@ async function loadDoc(file) {
 exports.make = async (dir) => {
   const files = await glob(dir + '**/*.md')
   for (const file of files) {
+    // parse and store the doc
     const doc = await loadDoc(file)
-    const { url } = doc.header
-    if (url) {
+    exports.docs.push(doc)
+
+    // update the index
+    if (doc.header.url) {
+      const url = doc.header.url.replace(/\/$/, '')
       if (exports.index[url]) {
-        logger.error(`Duplicate URL: ${url} (${doc.file}, ${exports.index[url].file})`)
+        if (exports.index[url].alias) {
+          logger.error(`Duplicate Alias URL: ${url} (${doc.file}, ${exports.index[url].file})`)
+        } else {
+          logger.error(`Duplicate URL: ${url} (${doc.file}, ${exports.index[url].file})`)
+          continue
+        }
       }
+
+      // set the doc to the url
       exports.index[url] = doc
+
+      // set the alias urls
+      if (doc.header.aliases) {
+        for (const alias of doc.header.aliases) {
+          const aliasUrl = alias.replace(/\/$/, '')
+          if (exports.index[aliasUrl]) {
+            logger.warn(`Duplicate Alias URL: ${url} (${doc.file}, ${exports.index[url].file})`)
+            continue
+          }
+          exports.index[aliasUrl] = { file: doc.file, url: aliasUrl, alias: doc }
+        }
+      }
     } else {
       logger.warn(`Doc without URL: ${doc.file}`)
     }
   }
-  return exports.index
+  return exports
 }
 
+exports.docs = []
 exports.index = {}
