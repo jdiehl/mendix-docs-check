@@ -1,3 +1,4 @@
-const { main } = require('./src/main')
+#!/usr/bin/env node
+const { cli } = require('./src/cli')
 
-main('../docs/content/en/docs/', './data.tsv').catch(err => console.error(err))
+cli();
