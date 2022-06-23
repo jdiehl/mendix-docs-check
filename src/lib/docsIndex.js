@@ -1,7 +1,9 @@
+const { readFile } = require('fs').promises
 const { promisify } = require('util')
-const { readFile, writeFile } = require('fs').promises
+
 const glob = promisify(require('glob'))
 const yaml = require('yaml')
+
 const logger = require('./logger')
 
 // load and parse a document
@@ -23,9 +25,6 @@ async function loadDoc(file) {
   res.body = content.join('')
 
   return res
-}
-
-async function loadDir(dir) {
 }
 
 // load all docs in a folder

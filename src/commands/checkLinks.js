@@ -1,4 +1,5 @@
 const { writeFileSync } = require('fs')
+
 const { make } = require('../lib/docsIndex')
 
 exports.checkLinks = async () => {
