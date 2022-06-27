@@ -32,6 +32,10 @@ exports.checkLinks = async () => {
       // TODO: check external links
       if (linkUrl.indexOf('://') >= 0) continue
 
+      // ignore mail links
+      // TODO: check external links
+      if (linkUrl.substring(0, 7) === 'mailto:') continue
+
       // check static content
       if (existsSync('static/' + linkUrl)) continue
 
