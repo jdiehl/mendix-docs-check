@@ -56,7 +56,7 @@ exports.make = async (dir) => {
         for (const alias of doc.header.aliases) {
           const aliasUrl = alias.replace(/\/$/, '')
           if (exports.index[aliasUrl]) {
-            logger.warn(`Duplicate Alias URL: ${url} (${doc.file}, ${exports.index[url].file})`)
+            logger.warn(`Duplicate Alias URL: ${url} (${doc.file}, ${exports.index[aliasUrl].file})`)
             continue
           }
           exports.index[aliasUrl] = { file: doc.file, url: aliasUrl, alias: doc }
