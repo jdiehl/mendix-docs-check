@@ -7,6 +7,7 @@ const logger = require('../lib/logger')
 function getLinks(doc) {
   // remove code blocks
   // TODO: Improve this regex
+  // https://stackoverflow.com/questions/6323417/regex-to-extract-all-matches-from-string-using-regexp-exec
   let content = doc.content.replace(/```[^`]+```/g, '').replace(/`[^`]+`/g, '')
 
   // extract links
@@ -49,7 +50,7 @@ exports.checkLinks = async () => {
       if (!linkDoc) {
         logger.warn(`Link not found: ${doc.file} [${link.text}](${link.url})`)
       } else if (linkDoc.alias) {
-        // logger.warn(`Link to alias: ${doc.file} [${link.text}](${link.url})`)
+        logger.warn(`Link to alias: ${doc.file} [${link.text}](${link.url}), Original: ${linkDoc.alias.header.url}`)
       }
     }
   }
