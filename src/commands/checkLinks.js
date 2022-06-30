@@ -31,7 +31,7 @@ exports.checkLinks = async () => {
       // simplify linkUrl
       // TODO: also check anchors
       const linkUrl = link.url.replace(/#.*$/, '').replace(/\/$/, '')
-      if (linkUrl.trim().length === 0) continue
+      if (linkUrl.length === 0) continue
 
       // ignore external links
       // TODO: check external links
