@@ -6,17 +6,14 @@ const logger = require('../lib/logger')
 // find all links in a document
 function getLinks(doc) {
   // remove code blocks
-  // TODO: Improve this regex
-  // https://stackoverflow.com/questions/6323417/regex-to-extract-all-matches-from-string-using-regexp-exec
   let content = doc.content.replace(/```[^`]+```/g, '').replace(/`[^`]+`/g, '')
 
   // extract links
-  const regex = /\[([^\]]*)\]\(([^)]+)\)/
+  const regex = /\[([^\]]*)\]\(([^)]+)\)/g
   const links = []
-  while (true) {
-    const match = regex.exec(content)
-    if (!match) break
-    links.push({ text: match[1], url: match[2] })
+  // eslint-disable-next-line no-cond-assign
+  for (let match; match = regex.exec(content);) {
+    links.push({ match: match[0], text: match[1], url: match[2], index: match.index })
     content = content.slice(match.index + match[0].length, content.length)
   }
   return links
@@ -39,7 +36,6 @@ exports.checkLinks = async () => {
       if (linkUrl.indexOf('://') >= 0) continue
 
       // ignore mail links
-      // TODO: check external links
       if (linkUrl.substring(0, 7) === 'mailto:') continue
 
       // check static content
