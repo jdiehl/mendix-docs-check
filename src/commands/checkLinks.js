@@ -46,7 +46,7 @@ exports.checkLinks = async () => {
       if (!linkDoc) {
         logger.warn(`Link not found: ${doc.file} [${link.text}](${link.url})`)
       } else if (linkDoc.alias) {
-        logger.warn(`Link to alias: ${doc.file} [${link.text}](${link.url}), Original: ${linkDoc.alias.header.url}`)
+        logger.warn(`Link to alias: ${doc.file}:${link.index} [${link.text}](${link.url}), Original: ${linkDoc.alias.header.url}`)
       }
     }
   }
